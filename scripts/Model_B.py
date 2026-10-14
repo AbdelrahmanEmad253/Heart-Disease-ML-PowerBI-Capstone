@@ -7,8 +7,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 # --- Configuration ---
-# 1. PASTE YOUR FOLDER PATH HERE:
-data_folder_path = r"E:\courses\depi\final project\part2"
+# 1. Paths are relative to the repo root:
+from pathlib import Path
+ROOT = Path(__file__).resolve().parents[1]
+data_folder_path = ROOT / "datasets"
 
 # 2. Define filenames
 cardio_filename = 'cardio_train.csv'
@@ -17,8 +19,8 @@ output_csv_B = 'cardio_feature_importance.csv'
 
 # 3. Create full file paths
 cardio_filepath = os.path.join(data_folder_path, cardio_filename)
-plot_filepath_B = os.path.join(data_folder_path, output_plot_B)
-csv_filepath_B = os.path.join(data_folder_path, output_csv_B)
+plot_filepath_B = os.path.join(ROOT / "outputs" / "png", output_plot_B)
+csv_filepath_B = os.path.join(ROOT / "outputs" / "csv", output_csv_B)
 # ---------------------
 
 print("--- Building Model B from 'cardio_train.csv' ---")

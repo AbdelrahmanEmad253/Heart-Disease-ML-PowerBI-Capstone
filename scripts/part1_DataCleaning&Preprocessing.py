@@ -1,8 +1,10 @@
+from pathlib import Path
+DATA = Path(__file__).resolve().parents[1] / "datasets"
 import pandas as pd
 
 # Load the dataset
 try:
-    df_cvd = pd.read_csv('CVD_cleaned.csv')
+    df_cvd = pd.read_csv(DATA / 'CVD_cleaned.csv')
 
     # 1. Inspect the first 5 rows
     print("--- First 5 Rows (head) ---")
@@ -29,7 +31,7 @@ import pandas as pd
 
 # Load the dataset
 try:
-    df_cvd = pd.read_csv('CVD_cleaned.csv')
+    df_cvd = pd.read_csv(DATA / 'CVD_cleaned.csv')
 
     # Get a list of all columns that are of type 'object' (text)
     object_cols = df_cvd.select_dtypes(include=['object']).columns
@@ -51,7 +53,7 @@ import pandas as pd
 
 # Load the dataset
 try:
-    df_cvd = pd.read_csv('CVD_cleaned.csv')
+    df_cvd = pd.read_csv(DATA / 'CVD_cleaned.csv')
     print("--- Original Dtypes (Partial) ---")
     print(df_cvd[['General_Health', 'Heart_Disease', 'Sex', 'Age_Category', 'Diabetes']].dtypes)
 
@@ -98,7 +100,7 @@ try:
     
     # Save the processed file for future use (and for Power BI)
     processed_filename = "CVD_processed_for_model.csv"
-    df_cvd.to_csv(processed_filename, index=False)
+    df_cvd.to_csv(DATA.parent / 'outputs' / 'csv' / processed_filename, index=False)
     print(f"\nSuccessfully saved processed data to '{processed_filename}'")
 
 except FileNotFoundError:
